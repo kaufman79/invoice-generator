@@ -13,13 +13,14 @@ for filepath in filepaths:
     # set the header
     filename = Path(filepath).stem
     invoice_nr, date = filename.split("-")
+    year, month, day = date.split(".")
 
     pdf.set_font(family="Times", style="B", size=16)
     pdf.cell(w=50, h=8, txt=f"Invoice # {invoice_nr}", align="L",
              ln=1, border=0)
 
     pdf.set_font(family="Times", style="B", size=16)
-    pdf.cell(w=50, h=8, txt=f"Date: {date}", align="L",
+    pdf.cell(w=50, h=8, txt=f"Date: {month}/{day}/{year}", align="L",
              ln=1, border=0)
 
     # set the table
@@ -31,7 +32,7 @@ for filepath in filepaths:
     pdf.set_text_color(80, 80, 80)
     pdf.cell(w=30, h=8, border=1, txt=columns[0])
     pdf.cell(w=70, h=8, border=1, txt=columns[1])
-    pdf.cell(w=30, h=8, border=1, txt=columns[2])
+    pdf.cell(w=30, h=8, border=1, txt="Amount")
     pdf.cell(w=30, h=8, border=1, txt=columns[3])
     pdf.cell(w=30, h=8, border=1, txt=columns[4], ln=1)
 
